@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+	<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+	<style>
+		.body{
+			font-family:'Source Sans Pro',sans-serif;
+		}
+		.item {
+			display: block;
+			transition: all .3s ease 0s;
+			-moz-transition: all .3s ease 0s;
+			-webkit-transition: all .3s ease 0s;
+			-o-transition: all .3s ease 0s;
+			-ms-transition: all .3s ease 0s;
+			margin-bottom: 15px;
+			height: 480px;
+		}
+		.product{
+			display: block;
+			height: auto;
+			transition: all .3s ease 0s;
+			-moz-transition: all .3s ease 0s;
+			-webkit-transition: all .3s ease 0s;
+			-o-transition: all .3s ease 0s;
+			-ms-transition: all .3s ease 0s;
+			border: 1px solid #DDD;
+			border-bottom: 1px solid #DDD;
+			text-align: center;
+			min-height: 406px;
+		}
+		.product-details-product-title{
+			color: #303030;
+			font-size: 27px;
+			font-weight: 500;
+			letter-spacing: -.5px;
+			line-height: 1.1;
+			margin: 0 0 10px;
+			overflow: hidden;
+			padding: 0;
+			text-align: left;
+			text-overflow: ellipsis;
+			white-space: normal;
+			clear: both;
+		}
+		.product-price {
+			border-top: 1px solid #ddd;
+			margin: 15px 0;
+			padding-top: 15px;
+			font-size: 24px;
+			font-weight: 300;
+			line-height: normal;
+			margin-bottom: 10px;
+		}
+		.product-image{
+			position: relative;
+			//width: 100%;
+			height: auto;
+			display: block;
+			clear: both;
+		}
+		.product-details{
+			border-top: 1px solid #ddd;
+			margin: 15px 0;
+			padding-top: 15px;
+		}
+	</style>
+</head>
+<body>
+	
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span> 
+		  </button>
+		  <a class="navbar-brand" href="/books/">Books Catalog</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="/books/">Home</a></li>
+			<li><a href="{{ url_for('showCategory', category='Inspiration') }}">Inspiration</a></li>
+			<li><a href="{{ url_for('showCategory', category='Motivation') }}">Motivation</a></li>
+			<li><a href="{{ url_for('showCategory', category='Mystery') }}">Mystery</a></li>
+			<li><a href="{{ url_for('showCategory', category='Finance') }}">Finance</a></li>
+			<li><a href="{{ url_for('showCategory', category='Sports') }}">Sports</a></li> 
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			 {% if 'username' not in session %}
+                  <li>
+                    <a class="glyphicon glyphicon-log-in" href="{{ url_for('showLogin') }}">&nbsp;Login</a>
+                  </li>
+              {% else %}
+                <li>
+                    <a class="glyphicon glyphicon-log-out" href="{{ url_for('disconnect') }}">&nbsp;Logout</a>
+                </li>
+              {% endif %}
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+    <div class="container-fluid">		
+		{% block content %}
+		{% endblock %}
+    </div>
+    </div>
+	<footer class="navbar-default navbar-fixed-bottom bg-4 text-center">
+		<div class="container-fluid">
+			<span>Books Catalog Made By Satvik Sachdev</span>
+		</div>
+	</footer>
+	
+</body>
+</html>

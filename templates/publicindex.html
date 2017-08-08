@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="row banner">
+		<div class="col-sm-12">
+			<h1> All Books </h1>
+		</div>
+	</div>
+	<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+	</div>
+
+
+    <div class="row">
+        {% for book in books %}
+            <div class="item col-sm-4 fixed">
+                <div class="product">
+                    <a href= "{{url_for('showBooks', category=book.category, bookId=book.id ) }}">
+						<img class="img-rounded img-responsive center-block" src="{{book.cover}}" width="200px" height="400px"/>
+					</a>
+                    <p>
+						<h5><strong>{{ book.name }}</strong></h5>
+						<h6>{{ book.author }}</h6>
+						<h6>${{ book.price }}</h6>
+					</p>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

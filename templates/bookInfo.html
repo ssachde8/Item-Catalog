@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="row"></div>
+	{% if book %}
+		<div class="row">
+			<div class="col-sm-6 product-image">
+				<img class="center-block" src="{{book.cover}} "/>
+			</div>
+			<div class="col-sm-4">
+				<div class="product-details-info-wrapper">
+					<span class="product-details-product-title">{{ book.name }}</span>
+					<h5 class="product-price">$ {{ book.price }} </h5>
+				</div>
+				<div class="product-details">
+					<span><strong>Author:&nbsp;</strong> </span>
+					<span>{{ book.author }}</span>
+				</div>
+				<div class="product-details">
+					<span><strong>Category:&nbsp;</strong> </span>
+					<span>{{ book.category }}</span>
+				</div>
+				<div class="product-details">
+					<span><strong>Description:</strong> </span>
+					<span>{{ book.description }}</span>
+				</div>
+				<div class="product-details">
+					<a href="{{ url_for('editBook', category=book.category, bookId=book.id) }}">
+						<button type="button" class="btn btn-info">EDIT</button>
+					</a>
+					<a href="{{ url_for('deleteBook', category=book.category, bookId=book.id) }}">
+						<button type="button" class="btn btn-danger">DELETE</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div>
+			<p> NO book found. PLease try later</p>
+		</div>
+	{% endif %}
+
+{% endblock %}
+		
